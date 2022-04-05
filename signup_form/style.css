@@ -1,8 +1,3 @@
-/* @font-face {
-    font-family: Norse-Bold;
-    src: url(Norse-Bold.otf);
-} */
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -18,6 +13,41 @@ title {
     display: none;
 }
 
+/* Get the fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+@font-face {
+    font-family: Norse;
+    src: url('Norse-Bold.otf');
+}
+
+@font-face {
+    font-family: Norse;
+    font-weight: bold;
+    src: url('Norse-Bold.otf');
+}
+
+/* Left */
+.left .logo-bar img {
+    width: 30%;
+}
+
+.logo-bar {
+    background: rgb(0, 0, 0, 0.6);
+    /* opacity: 0.1; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30%;
+}
+
+.logo-bar h1 {
+    font-size: 7em;
+    font-family: Norse;
+    color: white;
+}
+
+/* Right */
 .content {
     display: flex;
     justify-content: center;
@@ -51,7 +81,7 @@ title {
     /* padding: 2rem 2rem; */
 }
 
-.right > * {
+.right>* {
     /* padding: 10px 20px; */
     padding: 3rem 2rem;
 }
@@ -100,6 +130,7 @@ input {
 .right p {
     font-size: 1.25rem;
     font-weight: 600;
+    margin-bottom: 10px;
 }
 
 /* Button */
@@ -108,8 +139,8 @@ input {
     flex-direction: column;
 }
 
-.button-area > *{
-    flex:1;
+.button-area>* {
+    flex: 1;
 }
 
 .button-area a {
