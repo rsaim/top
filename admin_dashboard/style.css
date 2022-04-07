@@ -1,0 +1,167 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 90vh;
+    /* width: 80vh; */
+    border: 2px solid gold;
+    margin: auto;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 1fr 3fr 3fr;
+    height: 100%;
+    width: 100%;
+    padding: 2px;
+}
+
+/* Dashboard */
+.dashboard {
+    grid-area: 1 / 1 / 4/ 2;
+    border: 1px solid firebrick;
+    /* width: 100%; */
+    /* height: 100%; */
+    background: rgba(25,146,212,255);
+    color: white;
+    font-size: 14px;
+    /* padding: 5%; */
+    padding-left: 10%;
+    overflow: hidden;
+    opacity: 0.9;
+}
+.dashboard div h2, .dashboard div svg {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.dashboard div svg {
+    padding-right: 7%;
+    width: 23px !important;
+    height: 23px !important;
+}
+
+.dashboard div:nth-child(1), div:nth-child(6){
+    margin-bottom: 10%;
+    /* background: red; */
+}
+
+.dashboard div:nth-child(1){
+    font-size: 18px;
+    /* width: 40px !important;
+    height: 40px !important; */
+}
+
+a, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.dashboard div:hover {
+    transform: scale(1.2);
+    /* text-decoration: underline; */
+    /* border-bottom: 1px solid white; */
+    opacity: 1;
+    cursor:pointer;
+    color: rgb(2, 61, 94);
+    padding-left: 11%;
+}
+
+.dashboard div {
+    height: 5%;
+}
+
+/* .zoom {
+}
+
+.zoom:hover {
+transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+/* } */
+
+.clickable:hover {
+    cursor: pointer;
+    -webkit-transform: scale(1.07);
+} 
+
+
+
+/* Navbar */
+.navbar {
+    grid-area: 1 / 2 / 2 / 4;
+    /* border: 1px solid navy; */
+    background: yellow;
+    
+    display: grid;
+    grid-template-columns: 4fr 2fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.navbar .profile-link {
+    text-align: right;
+}
+
+/* Projects */
+.project-wrapper {
+    grid-area: 2 / 2 / 4 / 3;
+}
+
+.projects {
+    /* grid-area: 2 / 2 / 4 / 3; */
+    border: 1px solid palegreen;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    /* grid-template-rows: 1fr; */
+    grid-gap: 20px;
+}
+
+.card {
+    /* max-width: 150px; */
+    border: 1px solid rebeccapurple;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.project-cards .card p {
+    margin-bottom: 20px;
+}
+
+/* Announcements */
+.announcements {
+    border: 1px solid aqua;
+    grid-area: 2 / 3 / 3 / 4;
+}
+
+.announcements-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.announcements-wrapper > div {
+    border-bottom: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+}
+
+
+/* Trending */
+.trending {
+    border: 1px solid teal;
+    grid-area: 3 / 3 / 4 / 4;
+}
+
+.trending-wrapper div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trending-wrapper div img {
+    flex: 1 1 25%;
+}
+
+.trending-wrapper div span {
+    flex: 1 1 75%;
+    padding: 1.5em;
+}
