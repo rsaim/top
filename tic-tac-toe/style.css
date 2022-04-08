@@ -57,6 +57,11 @@ body {
     
 }
 
+.cell:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
 span {
     background-color: red;
     width: 100%;

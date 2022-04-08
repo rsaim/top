@@ -110,6 +110,7 @@ const Game = function (player1, player2) {
     const init = () => {
         console.log(`Initializing game`);
         resetDisplay();
+        displayTurn();
         initEventListeners();
     };
 
