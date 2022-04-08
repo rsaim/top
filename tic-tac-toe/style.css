@@ -1,0 +1,74 @@
+:root {
+    /* background-color: */
+}
+
+body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    /* width: 100%; */
+    height: 100vh;
+    font-family: 'Varela Round', sans-serif;
+    background-color: #c5c3c6;
+}
+
+.header {
+    border-bottom: 5px solid black;
+    font-size: 100px;
+    text-align: center;
+    color: #b0e4db;
+    background-color: #4c5c68;
+}
+
+.main {
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    align-items: center;
+}
+
+.main p {
+    /* display: block; */
+    font-size: 1.6em;
+}
+
+.board {
+    margin: 10px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 0px;
+    background: rgb(12, 57, 97);
+    width: 462px;
+    /*.cell width * 3 + border should be equal to this value*/
+    border-radius: 8px;
+}
+
+.cell {
+    border: 2px solid brown;
+    border-radius: 8px;
+    height: 150px;
+    width: 150px;
+    line-height: 150px;
+    font-size: 50px;
+    background: whitesmoke;
+    font-weight: 10;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+}
+
+span {
+    background-color: red;
+    width: 100%;
+    height: 1em;
+    display: inline-block;
+}
+
+.start {
+    width: 150px;
+    /* height: 30px; */
+    color: #b0e4db;
+    background-color: #4c5c68;
+    border-radius: 5px;
+    font-size: 1.6em;
+}
