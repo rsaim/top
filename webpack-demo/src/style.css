@@ -1,0 +1,5 @@
+.hello {
+    color: red;
+    background: url('./you-are-amazing.png') no-repeat center center / cover;
+    /* opacity: 0.5; */
+}
