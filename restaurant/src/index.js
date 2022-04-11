@@ -1,6 +1,9 @@
 import './style.css';
-// import RamenIchirakuCover from './Ramen-IchirakuCover.jpeg';
 import Naruto from './Naruto.jpeg';
+
+import { loadMenu } from './menu';
+import { loadHome } from './home';
+import { loadContact } from './contact';
 
 function createHeader() {
     const header = document.createElement('div');
@@ -11,17 +14,30 @@ function createHeader() {
     header.append(h1);
     // Navbar
     const navBar = document.createElement("nav");
+    
     const homeButton = document.createElement('button');
     homeButton.innerText = 'Home';
     navBar.appendChild(homeButton);
+    homeButton.addEventListener("click", () => {
+        console.log("homeButton clicked");
+        loadHome();
+    });
 
     const menuButton = document.createElement('button');
     menuButton.innerText = 'Menu';
     navBar.appendChild(menuButton);
+    menuButton.addEventListener("click", () => {
+        console.log("menuButton clicked");
+        loadMenu();
+    });
 
     const contactButton = document.createElement('button');
     contactButton.innerText = 'Contact';
     navBar.appendChild(contactButton);
+    contactButton.addEventListener("click", () => {
+        console.log("Contact button clicked");
+        loadContact();
+    });
 
     header.appendChild(navBar);
 
