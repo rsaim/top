@@ -8,7 +8,7 @@ function component() {
     const element = document.createElement('div');
     const btn = document.createElement('button');
 
-    element.innerHTML = myName('Saim');
+    element.innerHTML = myName('Saim Raza');
     // Add css
     element.classList.add('hello');
     // Add image
@@ -16,7 +16,7 @@ function component() {
     myIcon.src = YourAmazingIcon;
     element.appendChild(myIcon);
 
-    btn.innerHTML = 'Click me and check the console!';
+    btn.innerHTML = 'Click me and check the console!!';
     btn.onclick = printMe;
     element.appendChild(btn);
 
