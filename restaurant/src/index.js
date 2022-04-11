@@ -33,10 +33,10 @@ function createMain() {
     main.setAttribute("class", "main");
     
     // Add image
-    // const narutoImg = new Image();
-    // narutoImg.src = Naruto;
-    // narutoImg.setAttribute("id", "naruto");
-    // main.appendChild(narutoImg);
+    const narutoImg = new Image();
+    narutoImg.src = Naruto;
+    narutoImg.setAttribute("id", "naruto");
+    main.appendChild(narutoImg);
     
     return main;
 }

@@ -17,11 +17,8 @@ body {
     font-family: 'Montserrat', cursive;
     font-size: 1.6rem;
     background: url('./Ramen-IchirakuCover.jpeg') no-repeat center center / cover;
-    opacity: 0.8;
-    background-attachment: fixed;
-    background-size: cover;
-    backdrop-filter: blur(20px);
-    height: 100%;
+    /* opacity: 0.8; */
+    height: 100vh;
 }
 
 .header {
@@ -39,7 +36,6 @@ button {
     padding: 2rem;
     font-size: 2rem;
     background-color: transparent;
-    /* border-bottom: 2px solid transparent; */
     transition: transform 0.3s;
 }
 
@@ -52,4 +48,19 @@ button:hover {
     border-bottom: 1px solid rgb(252, 242, 242);
     opacity: 0.6;
     /* background-color: burlywood; */
+}
+
+/* Main */
+.main {
+    /* display: block; */
+    /* background: beige; */
+    height: 500px;
+    backdrop-filter: blur(3px);
+}
+
+#naruto {
+    display: block;
+    margin:auto;
+    height: inherit;
+    border-radius: 150px;
 }
