@@ -1,0 +1,92 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: rgb(3, 31, 56);
+    font-family: 'Montserrat', cursive;
+    font-size: 1.6rem;
+    background: url('./Ramen-IchirakuCover.jpeg') no-repeat center center / cover;
+    opacity: 0.8;
+    background-attachment: fixed;
+    background-size: cover;
+    backdrop-filter: blur(20px);
+    height: 100vh;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+}
+
+.content p {
+    padding: 1rem;
+  }
+
+.content {
+    /* margin: auto; */
+    /* width: 800px; */
+    height: 100vh;
+    /* border: 2px solid rgb(91, 197, 59); */
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 4fr 1fr;
+    grid-gap: 0;
+}
+
+.header {
+    /* background: aliceblue; */
+    text-align: center;
+}
+
+nav {
+    border-bottom: 10px solid black;
+}
+
+.main {
+    display: block;
+    height: 50%;
+    padding: 10px;
+}
+
+#naruto {
+    margin:auto;
+    display: block;
+    height: inherit;
+    border-radius: 200px;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* gap: 1rem; */
+    /* width: 100%; */
+    padding: 1rem;
+    border-top: 1px solid black;
+    /* background-color: var(--background-light); */
+  }
+
+
+/* Button styling */
+button {
+    font-family: inherit;
+    color: inherit;
+    cursor: pointer;
+    border-style: none;
+    outline: none;
+    padding: 2rem;
+    font-size: 2rem;
+    background-color: transparent;
+    /* border-bottom: 2px solid transparent; */
+    transition: transform 0.3s;
+}
+
+button.active {
+    border-bottom: 2px solid rgb(114, 16, 16);
+}
+
+button:hover {
+    transform: translateY(-10%);
+    /* border-bottom: 1px solid maroon; */
+    opacity: 0.8;
+    background-color: burlywood;
+}
