@@ -64,3 +64,8 @@ button:hover {
     height: inherit;
     border-radius: 150px;
 }
+
+.footer {
+    padding-top: 50px;
+    text-align: center;
+}

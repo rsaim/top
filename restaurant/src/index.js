@@ -42,8 +42,13 @@ function createMain() {
 }
 
 function createFooter() {
-    const footer = document.createElement('div');
+    const footer = document.createElement('footer');
     footer.setAttribute("class", "footer");
+
+    const p = document.createElement("p");
+    p.innerText = "Copyright © 2021 rsaim"
+    footer.appendChild(p);
+
     return footer;
 }
 
