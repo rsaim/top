@@ -28,12 +28,21 @@ body {
     font-size: 1.6rem;
     /* background: url('./Ramen-IchirakuCover.jpeg') no-repeat center center / cover; */
     height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 5fr 1fr;
+    display: flex;
+    flex-direction: column;
+    vertical-align: center;
+    /* align-items: center; */
+    /* width: 100%; */
+    /* grid-template-columns: 1fr;
+    grid-template-rows: 1fr 5fr 1fr; */
 }
 
+/* .content > *{
+    flex:1;
+} */
+
 .header {
+    flex:1;
     background: rgb(170, 184, 197, 0.8);
     /* background: aliceblue; */
     text-align: center;
@@ -65,11 +74,12 @@ button:hover {
 
 /* Main */
 .main {
+    flex:4;
     display: block;
     /* background: beige; */
     height: 500px;
     backdrop-filter: blur(3px);
-    padding: 10px;
+    padding: 3%;
 }
 
 #naruto {
@@ -80,9 +90,10 @@ button:hover {
 }
 
 .footer {
+    flex:0;
     /* display: block; */
     background: rgb(170, 184, 197, 0.8);
-    padding-top: 50px;
+    /* padding-top: 50px; */
     text-align: center;
     /* margin: 20px; */
     vertical-align: middle;
