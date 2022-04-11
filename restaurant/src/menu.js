@@ -1,8 +1,8 @@
 import Menu from './menu.jpeg';
 
 function loadMenu() {
-    const menu = document.querySelector('#naruto');
-    menu.src = Menu;
+    const mainImg = document.querySelector('#main-img');
+    mainImg.src = Menu;
 }
 
 export { loadMenu };
