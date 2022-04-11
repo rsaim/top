@@ -1,9 +1,9 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 
 }
 
@@ -12,14 +12,14 @@ body {
 }
 
 .background {
-    background-image: url('./Ramen-IchirakuCover.jpeg');
-    background-position: bottom;
+    background: url('./Ramen-IchirakuCover.jpeg') no-repeat center center / cover;
+    /* background-position: bottom;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover; */
     height: 100vh;
     width: 100%;
     backdrop-filter: blur(80px);
-  }
+}
 
 
 .content {
@@ -41,11 +41,19 @@ body {
     flex:1;
 } */
 
+.header h1 {
+    color: rgb(150, 40, 40);
+    font-size: 4em;
+    text-shadow: 2px 2px #ff0000;
+}
+
 .header {
-    flex:1;
+    flex: 1;
     background: rgb(170, 184, 197, 0.8);
     /* background: aliceblue; */
     text-align: center;
+    background: rgb(74 83 92 / 80%);
+    color: peachpuff;
 }
 
 /* Button styling */
@@ -74,7 +82,7 @@ button:hover {
 
 /* Main */
 .main {
-    flex:4;
+    flex: 4;
     display: block;
     /* background: beige; */
     height: 500px;
@@ -84,13 +92,13 @@ button:hover {
 
 #naruto {
     display: block;
-    margin:auto;
+    margin: auto;
     height: 100%;
     border-radius: 150px;
 }
 
 .footer {
-    flex:0;
+    flex: 0;
     /* display: block; */
     background: rgb(170, 184, 197, 0.8);
     /* padding-top: 50px; */
