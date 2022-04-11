@@ -55,6 +55,7 @@ function createFooter() {
 function renderHomePage() {
     const content = document.createElement('div');
     content.setAttribute("class", "content");
+    content.classList.add("background");
     
     content.appendChild(createHeader());
     content.appendChild(createMain());

@@ -4,24 +4,37 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-}
 
-html {
-    /* font-size: 62.5%; */
-    /* line-height: 1.6; */
-    /* height: 100vh  ; */
 }
 
 body {
-    background: rgb(3, 31, 56);
+    /* backdrop-filter: opacity(80%); */
+}
+
+.background {
+    background-image: url('./Ramen-IchirakuCover.jpeg');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    backdrop-filter: blur(80px);
+  }
+
+
+.content {
+    backdrop-filter: blur(10px);
     font-family: 'Montserrat', cursive;
     font-size: 1.6rem;
-    background: url('./Ramen-IchirakuCover.jpeg') no-repeat center center / cover;
-    /* opacity: 0.8; */
+    /* background: url('./Ramen-IchirakuCover.jpeg') no-repeat center center / cover; */
     height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 5fr 1fr;
 }
 
 .header {
+    background: rgb(170, 184, 197, 0.8);
     /* background: aliceblue; */
     text-align: center;
 }
@@ -52,20 +65,25 @@ button:hover {
 
 /* Main */
 .main {
-    /* display: block; */
+    display: block;
     /* background: beige; */
     height: 500px;
     backdrop-filter: blur(3px);
+    padding: 10px;
 }
 
 #naruto {
     display: block;
     margin:auto;
-    height: inherit;
+    height: 100%;
     border-radius: 150px;
 }
 
 .footer {
+    /* display: block; */
+    background: rgb(170, 184, 197, 0.8);
     padding-top: 50px;
     text-align: center;
+    /* margin: 20px; */
+    vertical-align: middle;
 }
