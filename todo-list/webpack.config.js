@@ -14,7 +14,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Dynamic JS Ichiraku',
+            title: 'TODO - Odin Project',
         }),
     ],
     output: {

@@ -1,0 +1,88 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    grid-template-rows: 1fr 10fr;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+    background-size: 100% 3rem;
+    position: relative;
+    /* line-height: 3rem; */
+    height: 100vh;
+    font-family: 'helvetica neue';
+}
+
+.header {
+    grid-area: 1 / 1/ 2 / 3;
+    font-size: 1.2em;
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    padding: 5px;
+    color: #072238;
+    background: rgba(58, 56, 56, 0.3);
+}
+
+.header > * {
+    display: inline-block;
+    padding-left: 30px;
+}
+
+/* Sidebar */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+    text-align: start;
+    color: rgb(70, 77, 165);
+    padding: 10px;
+    background: #ffc80059;
+    align-items: center;
+}
+
+.sidebar ul {
+    /* display: flex;
+    flex-direction: column; */
+    list-style: none;
+    padding-top: 50%;
+}
+
+.sidebar ul li {
+    /* flex: 1; */
+    padding-bottom: 20px;
+    font-size: 0.9em;
+}
+
+.sidebar .tabs {
+    flex: 2;
+    font-size: 1.3em;
+}
+
+.sidebar .projects {
+    color: black;
+    flex: 3;
+}
+
+.clickable {
+    transition-duration: 0.3s;
+    transition-delay: 0.1s;
+}
+
+.sidebar ul li:before {
+    content:"";
+    display:inline-block;
+    content: url("https://img.icons8.com/office/16/000000/search--v1.png");
+    margin-right:5px;
+}
+
+.clickable:hover {
+    zoom: 1.1;
+    cursor: pointer;
+}
