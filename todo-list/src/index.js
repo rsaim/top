@@ -2,9 +2,6 @@ import Project from './project';
 import ProjectStorage from './storage';
 import './style.css';
 import Todo from "./todo";
-// Tabulator.registerModule([SortModule]);
-const { DateTime } = require("luxon");
-var luxon = require('luxon');
 import { createOverlayButton, createOverlayForm } from './overlay';
 import { displayTable } from './display';
 
@@ -24,7 +21,7 @@ function createHeader() {
     return header;
 }
 
-function createsidebar() {
+function createsidebar(projectList) {
     const sidebar = document.createElement("div");
     sidebar.setAttribute("class", "sidebar");
     // Tabs - Home, Today, This week
@@ -66,18 +63,35 @@ function createsidebar() {
     projectDiv.setAttribute("class", "projects");
 
     const projectHeading = document.createElement("h2");
-    projectHeading.innerText = "Projects";
+    projectHeading.innerText = "Project List";
     projectDiv.appendChild(projectHeading);
 
-    const projectList = document.createElement("ul");
-    projectList.setAttribute("class", "project-list");
-    projectDiv.appendChild(projectList);
+    const projectUL = document.createElement("ul");
+    projectUL.setAttribute("class", "project-list");
+    for (let project of projectList) {
+        let li = document.createElement("li");
+        li.setAttribute("name", project.title);
+        li.innerText = project.title;
+        li.classList.add("clickable");
+        li.addEventListener("click", (e) => {
+            console.log(e.target);
+            let projectList = ProjectStorage.load();
+            const selectedProjectName = e.target.innerText;
+            console.log({ selectedProjectName });
+            let project = projectList.find(x => x.title === selectedProjectName);
+            if (project)
+                displayTable([project]);
+        });
+        projectUL.appendChild(li);
+    }
+    projectDiv.appendChild(projectUL);
 
     // Append thie child items
     // tabList.appendChild(home);
-    tabList.appendChild(today);
-    tabList.appendChild(week);
-    sidebar.appendChild(tabList);
+    // TODO: consider supporting filtering by today/week
+    // tabList.appendChild(today);
+    // tabList.appendChild(week);
+    // sidebar.appendChild(tabList);
     sidebar.appendChild(projectDiv);
     return sidebar;
 }
@@ -85,6 +99,14 @@ function createsidebar() {
 function createMain() {
     const main = document.createElement("div");
     main.setAttribute("class", "main");
+
+    const h1 = document.createElement("h1");
+    h1.innerText = "All Projects";
+    h1.classList.add("clickable");
+    h1.addEventListener("click", () => {
+        displayTable(ProjectStorage.load());
+    });
+    main.appendChild(h1);
 
     const tableItems = document.createElement("div");
     tableItems.setAttribute("id", "example-table");
@@ -96,7 +118,7 @@ function loadHome(projectList) {
     const content = document.createElement("div");
     content.setAttribute("class", "content");
     content.appendChild(createHeader());
-    content.appendChild(createsidebar());
+    content.appendChild(createsidebar(projectList));
     content.appendChild(createMain());
     document.body.appendChild(content);
     document.body.appendChild(createOverlayForm());
@@ -105,14 +127,14 @@ function loadHome(projectList) {
     displayTable(projectList);
 }
 
-window.onload = function (e) {
+function renderPage() {
     if (window.localStorage.getItem("projects") == null) {
-        const todo1 = new Todo("task1", "play task", "05/08/2022", "high", false, 80);
-        const todo2 = new Todo("task2", "play task", "05/02/2002", "low", false, 70);
-        const todo3 = new Todo("task3", "play task", "05/06/2022", "medium", false, 50);
-        const todo4 = new Todo("task4", "play task", "04/08/2022", "high", false, 20);
-        const todo5 = new Todo("task5", "play task", "05/08/2022", "low", false, 30);
-        const todo6 = new Todo("task6", "play task", "05/08/2015", "high", false, 99);
+        const todo1 = new Todo("task1", "play task", "2022/05/08", "high", false, 80);
+        const todo2 = new Todo("task2", "play task", "1995/05/02", "low", false, 70);
+        const todo3 = new Todo("task3", "play task", "2004/05/06", "medium", false, 50);
+        const todo4 = new Todo("task4", "play task", "2007/04/08", "high", false, 20);
+        const todo5 = new Todo("task5", "play task", "2009/05/08", "low", false, 30);
+        const todo6 = new Todo("task6", "play task", "2020/05/08", "high", false, 99);
         
         let project1 = new Project("main", [todo1, todo2, todo3, todo4]);
         let project2 = new Project("secondary", [todo5, todo6]);
@@ -121,9 +143,9 @@ window.onload = function (e) {
         console.log(projectList);
         ProjectStorage.save(projectList);
     }
-    let loadedProjects = ProjectStorage.load()
+    let loadedProjects = ProjectStorage.load();
     console.log({ loadedProjects });
-    loadHome(loadedProjects);
+    loadHome(ProjectStorage.load());
 }
 
-// export { displayTable };
+window.onload = renderPage;

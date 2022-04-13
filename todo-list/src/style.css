@@ -140,10 +140,14 @@
     display: none !important;
 }
 
+.activeProject {
+    text-decoration: underline;
+}
+
 .add-items {
     /* margin-top: 20px; */
     margin: auto;
-    width: 25%;
+    width: 35%;
     background: #cadce6;
     padding: 15px;
 }
@@ -161,4 +165,9 @@
 [type="submit"] {
     -webkit-appearance: button;
     /* 2 */
+}
+
+.main h1 {
+    text-align: center;
+    margin: 10px;
 }

@@ -20,9 +20,11 @@ export default class ProjectStorage {
 
     static save_todo(projectName, todo) {
         let projects = this.load();
+        console.log({ projectName, todo });
         let idx = projects.findIndex(x => x.title === projectName);
         if (idx != -1) {
-            let project = projects.pop(idx);
+            let project = projects[idx];
+            projects.splice(idx, 1);
             project.add_todo(todo);
             projects.push(project);
         } else {

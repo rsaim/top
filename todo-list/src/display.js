@@ -1,4 +1,6 @@
 import { SortModule, TabulatorFull as Tabulator } from 'tabulator-tables';
+Tabulator.registerModule([SortModule]);
+// var moment = require("moment");
 
 function displayTable(projectList) {
     let json_data = [];
@@ -30,7 +32,7 @@ function displayTable(projectList) {
                 },
             },
             { title: "Description", field: "description", editor: true, },
-            { title: "Due Date", field: "dueDate", editor: true, sorter: "date", },
+            { title: "Due Date", field: "dueDate", editor: true},
             { title: "Priotiy", field: "priority", editor: true, },
             { title: "Progress", field: "progress", formatter: "progress", editor: true, },
         ],
