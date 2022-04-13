@@ -1,12 +1,12 @@
-import { SortModule, TabulatorFull as Tabulator } from 'tabulator-tables';
 import Project from './project';
 import ProjectStorage from './storage';
 import './style.css';
 import Todo from "./todo";
-Tabulator.registerModule([SortModule]);
+// Tabulator.registerModule([SortModule]);
 const { DateTime } = require("luxon");
 var luxon = require('luxon');
-
+import { createOverlayButton, createOverlayForm } from './overlay';
+import { displayTable } from './display';
 
 
 function createHeader() {
@@ -92,75 +92,38 @@ function createMain() {
     return main;
 }
 
-function displayTable(json_data) {
-    var tabledata = [
-        { id: 1, name: "Oli Bob", age: "12", col: "red", dob: "14/05/1983" },
-        { id: 2, name: "Mary May", age: "1", col: "blue", dob: "14/05/1982" },
-        { id: 3, name: "Christine Lobowski", age: "42", col: "green", dob: "22/05/1982" },
-        { id: 4, name: "Brendon Philips", age: "125", col: "orange", dob: "01/08/1980" },
-        { id: 5, name: "Margret Marmajuke", age: "16", col: "yellow", dob: "31/01/1999" },
-    ];
-
-    //create Tabulator on DOM element with id "example-table"
-    console.table(json_data);
-    var table = new Tabulator("#example-table", {
-        debugInvalidOptions: true,
-        data: json_data,
-        layout: "fitColumns",
-        // autoColumns: true,
-        columns: [
-            {
-                title: "Title", field: "title", width: 150, editor: true, cellClick: function (e, cell) {
-                    console.log(cell);
-                },
-            },
-            { title: "Description", field: "description", editor: true, },
-            { title: "Due Date", field: "dueDate", editor: true, sorter: "date",},
-            { title: "Priotiy", field: "priority", editor: true, },
-            { title: "Progress", field: "progress", formatter: "progress", editor: true, },
-        ],
-    });
-
-    table.on('rowClick', (e, row) => {
-        console.log("Row " + row.getIndex() + " Clicked!!!!");
-        // table.deleteRow(row.getIndex());
-    });
-}
-
-function loadHome(json_data) {
+function loadHome(projectList) {
     const content = document.createElement("div");
     content.setAttribute("class", "content");
     content.appendChild(createHeader());
     content.appendChild(createsidebar());
     content.appendChild(createMain());
     document.body.appendChild(content);
+    document.body.appendChild(createOverlayForm());
+    document.body.appendChild(createOverlayButton());
     // Display todo items
-    displayTable(json_data);
+    displayTable(projectList);
 }
 
 window.onload = function (e) {
-    const todo1 = new Todo("task1", "play task", "05/08/2022", "high", false);
-    const todo2 = new Todo("task2", "play task", "05/02/2002", "low", false);
-    const todo3 = new Todo("task3", "play task", "05/06/2022", "medium", false);
-    const todo4 = new Todo("task4", "play task", "04/08/2022", "high", false);
-    const todo5 = new Todo("task5", "play task", "05/08/2022", "low", false);
-    const todo6 = new Todo("task6", "play task", "05/08/2015", "high", false);
-
-    let project1 = new Project("main", [todo1, todo2, todo3, todo4]);
-    let project2 = new Project("secondary", [todo5, todo6]);
-
-    let projectList = [project1, project2];
-    console.log(projectList);
-    ProjectStorage.save(projectList);
+    if (window.localStorage.getItem("projects") == null) {
+        const todo1 = new Todo("task1", "play task", "05/08/2022", "high", false, 80);
+        const todo2 = new Todo("task2", "play task", "05/02/2002", "low", false, 70);
+        const todo3 = new Todo("task3", "play task", "05/06/2022", "medium", false, 50);
+        const todo4 = new Todo("task4", "play task", "04/08/2022", "high", false, 20);
+        const todo5 = new Todo("task5", "play task", "05/08/2022", "low", false, 30);
+        const todo6 = new Todo("task6", "play task", "05/08/2015", "high", false, 99);
+        
+        let project1 = new Project("main", [todo1, todo2, todo3, todo4]);
+        let project2 = new Project("secondary", [todo5, todo6]);
+        
+        let projectList = [project1, project2];
+        console.log(projectList);
+        ProjectStorage.save(projectList);
+    }
     let loadedProjects = ProjectStorage.load()
     console.log({ loadedProjects });
-
-    let json_data = [];
-    for (let project of projectList) {
-        for (let todo of project.todos) {
-            json_data.push(todo.toJson());
-        }
-    }
-
-    loadHome(json_data);
+    loadHome(loadedProjects);
 }
+
+// export { displayTable };

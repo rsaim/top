@@ -1,11 +1,11 @@
 export default class Todo {
-    constructor(title, description, dueDate, priority, finished) {
+    constructor(title, description, dueDate, priority, finished, progress) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
-        // this.finished = finished;
-        this.progress = 100 * Math.random();
+        this.finished = finished;
+        this.progress = progress || 100 * Math.random();
     }
 
     toJson() {
@@ -14,7 +14,7 @@ export default class Todo {
             "description": this.description,
             "dueDate": this.dueDate,
             "priority": this.priority,
-            // "finished": this.finished.JSON,
+            "finished": this.finished,
             "progress": this.progress,
         }
     }
