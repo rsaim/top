@@ -1,12 +1,11 @@
-import './style.css';
-import Todo from "./todo.js";
-// import { Tabulator } from 'tabulator-tables';
-// require('jquery.tabulator');
 import { DateTime, Duration, FixedOffsetZone, IANAZone, Info, Interval, InvalidZone, Settings, SystemZone, VERSION, Zone, } from 'luxon';
-// import { luxon } from 'luxon';
 import { TabulatorFull as Tabulator, SortModule } from 'tabulator-tables';
 Tabulator.registerModule([SortModule]);
 
+import Project from './project';
+import Todo from "./todo";
+import './style.css';
+import ProjectStorage from './storage';
 
 function createHeader() {
     const header = document.createElement("header");
@@ -73,7 +72,7 @@ function createsidebar() {
     projectDiv.appendChild(projectList);
 
     // Append thie child items
-    tabList.appendChild(home);
+    // tabList.appendChild(home);
     tabList.appendChild(today);
     tabList.appendChild(week);
     sidebar.appendChild(tabList);
@@ -102,21 +101,18 @@ function displayTable() {
 
     //create Tabulator on DOM element with id "example-table"
     var table = new Tabulator("#example-table", {
-        // height:205, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
         debugInvalidOptions: true,
-        data: tabledata, //assign data to table
-        layout: "fitColumns", //fit columns to width of table (optional)
-        columns: [ //Define Table Columns
+        data: tabledata,
+        layout: "fitColumns",
+        columns: [ 
             {
                 title: "Name", field: "name", width: 150, editor: true, cellClick: function (e, cell) {
-                    //e - the click event object
-                    //cell - cell component
                     console.log(cell);
                 },
             },
-            { title: "Age", field: "age", align: "left", formatter: "progress" },
-            { title: "Favourite Color", field: "col" },
-            { title: "Date Of Birth", field: "dob", sorter: "date", align: "center" },
+            { title: "Age", field: "age", align: "left", formatter: "progress", editor: true, },
+            { title: "Favourite Color", field: "col", editor: true, },
+            { title: "Date Of Birth", field: "dob", sorter: "date", align: "center", editor: true, },
         ],
     });
 
@@ -140,5 +136,20 @@ function loadHome() {
 }
 
 window.onload = function (e) {
+    const todo1 = new Todo("game1", "play game", "2020-01-02", "high", false);
+    const todo2 = new Todo("game2", "play game", "2020-01-02", "low", false);
+    const todo3 = new Todo("game3", "play game", "2020-01-02", "medium", false);
+    const todo4 = new Todo("game4", "play game", "2020-01-02", "high", false);
+    const todo5 = new Todo("game5", "play game", "2020-01-02", "low", false);
+    const todo6 = new Todo("game6", "play game", "2020-01-02", "high", false);
+    
+    let project1 = new Project("main", [todo1, todo2, todo3, todo4]);
+    let project2 = new Project("secondary", [todo5, todo6]);
+
+    let projectList = [project1, project2];
+    console.log(projectList);
+    ProjectStorage.save(projectList);
+    console.log(ProjectStorage.load());
+
     loadHome();
 }
