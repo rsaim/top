@@ -4,8 +4,19 @@ export default class Todo {
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
-        this.finished = finished;
+        // this.finished = finished;
+        this.progress = 100 * Math.random();
+    }
 
+    toJson() {
+        return {
+            "title": this.title,
+            "description": this.description,
+            "dueDate": this.dueDate,
+            "priority": this.priority,
+            // "finished": this.finished.JSON,
+            "progress": this.progress,
+        }
     }
     
     static fromJson(json) {

@@ -13,7 +13,7 @@ export default class Project {
     static fromJSON(json) {
         let newProject = new Project();
         newProject.title = json.title;
-        newProject.todos = json.todos;
+        newProject.todos = json.todos.map(t => Todo.fromJson(t));
         return newProject;
     }
 }

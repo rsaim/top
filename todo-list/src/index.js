@@ -1,11 +1,13 @@
-import { DateTime, Duration, FixedOffsetZone, IANAZone, Info, Interval, InvalidZone, Settings, SystemZone, VERSION, Zone, } from 'luxon';
-import { TabulatorFull as Tabulator, SortModule } from 'tabulator-tables';
-Tabulator.registerModule([SortModule]);
-
+import { SortModule, TabulatorFull as Tabulator } from 'tabulator-tables';
 import Project from './project';
-import Todo from "./todo";
-import './style.css';
 import ProjectStorage from './storage';
+import './style.css';
+import Todo from "./todo";
+Tabulator.registerModule([SortModule]);
+const { DateTime } = require("luxon");
+var luxon = require('luxon');
+
+
 
 function createHeader() {
     const header = document.createElement("header");
@@ -90,7 +92,7 @@ function createMain() {
     return main;
 }
 
-function displayTable() {
+function displayTable(json_data) {
     var tabledata = [
         { id: 1, name: "Oli Bob", age: "12", col: "red", dob: "14/05/1983" },
         { id: 2, name: "Mary May", age: "1", col: "blue", dob: "14/05/1982" },
@@ -100,30 +102,32 @@ function displayTable() {
     ];
 
     //create Tabulator on DOM element with id "example-table"
+    console.table(json_data);
     var table = new Tabulator("#example-table", {
         debugInvalidOptions: true,
-        data: tabledata,
+        data: json_data,
         layout: "fitColumns",
-        columns: [ 
+        // autoColumns: true,
+        columns: [
             {
-                title: "Name", field: "name", width: 150, editor: true, cellClick: function (e, cell) {
+                title: "Title", field: "title", width: 150, editor: true, cellClick: function (e, cell) {
                     console.log(cell);
                 },
             },
-            { title: "Age", field: "age", align: "left", formatter: "progress", editor: true, },
-            { title: "Favourite Color", field: "col", editor: true, },
-            { title: "Date Of Birth", field: "dob", sorter: "date", align: "center", editor: true, },
+            { title: "Description", field: "description", editor: true, },
+            { title: "Due Date", field: "dueDate", editor: true, sorter: "date",},
+            { title: "Priotiy", field: "priority", editor: true, },
+            { title: "Progress", field: "progress", formatter: "progress", editor: true, },
         ],
     });
 
     table.on('rowClick', (e, row) => {
         console.log("Row " + row.getIndex() + " Clicked!!!!");
-        // table.edit
         // table.deleteRow(row.getIndex());
     });
 }
 
-function loadHome() {
+function loadHome(json_data) {
     const content = document.createElement("div");
     content.setAttribute("class", "content");
     content.appendChild(createHeader());
@@ -131,25 +135,32 @@ function loadHome() {
     content.appendChild(createMain());
     document.body.appendChild(content);
     // Display todo items
-    document.head.innerHTML = document.head.innerHTML + '    <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator_bootstrap4.min.css" rel="stylesheet"> <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/2.3.1/luxon.min.js" integrity="sha512-Nw0Abk+Ywwk5FzYTxtB70/xJRiCI0S2ORbXI3VBlFpKJ44LM6cW2WxIIolyKEOxOuMI90GIfXdlZRJepu7cczA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>';
-    displayTable();
+    displayTable(json_data);
 }
 
 window.onload = function (e) {
-    const todo1 = new Todo("game1", "play game", "2020-01-02", "high", false);
-    const todo2 = new Todo("game2", "play game", "2020-01-02", "low", false);
-    const todo3 = new Todo("game3", "play game", "2020-01-02", "medium", false);
-    const todo4 = new Todo("game4", "play game", "2020-01-02", "high", false);
-    const todo5 = new Todo("game5", "play game", "2020-01-02", "low", false);
-    const todo6 = new Todo("game6", "play game", "2020-01-02", "high", false);
-    
+    const todo1 = new Todo("task1", "play task", "05/08/2022", "high", false);
+    const todo2 = new Todo("task2", "play task", "05/02/2002", "low", false);
+    const todo3 = new Todo("task3", "play task", "05/06/2022", "medium", false);
+    const todo4 = new Todo("task4", "play task", "04/08/2022", "high", false);
+    const todo5 = new Todo("task5", "play task", "05/08/2022", "low", false);
+    const todo6 = new Todo("task6", "play task", "05/08/2015", "high", false);
+
     let project1 = new Project("main", [todo1, todo2, todo3, todo4]);
     let project2 = new Project("secondary", [todo5, todo6]);
 
     let projectList = [project1, project2];
     console.log(projectList);
     ProjectStorage.save(projectList);
-    console.log(ProjectStorage.load());
+    let loadedProjects = ProjectStorage.load()
+    console.log({ loadedProjects });
 
-    loadHome();
+    let json_data = [];
+    for (let project of projectList) {
+        for (let todo of project.todos) {
+            json_data.push(todo.toJson());
+        }
+    }
+
+    loadHome(json_data);
 }
